@@ -37,7 +37,7 @@
             >
             <button
                 class="btn btn-primary bg-green-400 px-2 py-2 text-white rounded-lg hover:bg-green-600 w-full"
-                on:click={login}>Register</button
+                on:click={login}>Sign Up</button
             >
         </div>
     </div>
