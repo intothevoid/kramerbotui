@@ -1,10 +1,19 @@
 <script>
-    import { onMount } from "svelte";
+    import { userStore } from "./userStore";
     let username = "";
     let password = "";
 
     async function login() {
         // login API call
+        // TODO login check
+
+        if (username === "admin" && password === "password") {
+            userStore.update((state) => ({
+                ...state,
+                isLoggedIn: true,
+                username: { username },
+            }));
+        }
     }
 </script>
 

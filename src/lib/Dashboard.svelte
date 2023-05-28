@@ -1,4 +1,6 @@
 <script>
+    import { userStore } from "./userStore";
+
     let username = ""; // fetch username from API
     let keyword = "";
     let keywords = [];
@@ -7,12 +9,20 @@
         keywords = [...keywords, keyword];
         keyword = "";
     }
+
+    function logout() {
+        userStore.update((state) => ({
+            ...state,
+            isLoggedIn: false,
+            username: null,
+        }));
+    }
 </script>
 
 <div class="container mx-auto px-4">
     <div class="flex items-center justify-between py-4">
         <h1 class="text-lg">Hello, {username}</h1>
-        <button class="btn btn-primary">Logout</button>
+        <button class="btn btn-primary" on:click={logout}>Logout</button>
     </div>
 
     <div class="mb-4">

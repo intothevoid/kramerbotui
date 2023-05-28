@@ -1,5 +1,4 @@
 <script>
-    import { onMount } from "svelte";
     let username = "";
     let password = "";
     let passwordRepeat = "";
