@@ -88,7 +88,7 @@
                     type="checkbox"
                     bind:checked={ozbargainOptions.goodDeals}
                 />
-                Watch good deals (25+ upvotes in an hour)
+                Watch good deals (25+ upvotes within an hour)
             </label>
         </div>
         <div>
@@ -97,7 +97,7 @@
                     type="checkbox"
                     bind:checked={ozbargainOptions.awesomeDeals}
                 />
-                Watch awesome deals (100+ upvotes in 24 hours)
+                Watch awesome deals (100+ upvotes within 24 hours)
             </label>
         </div>
     </div>

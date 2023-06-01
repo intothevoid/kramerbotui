@@ -1,4 +1,6 @@
 <script>
+    import { userStore } from "./userStore";
+
     let username = "";
     let password = "";
     let passwordRepeat = "";
@@ -10,6 +12,13 @@
 
     async function signup() {
         // signup API call
+    }
+
+    async function goBack() {
+        userStore.update((state) => ({
+            ...state,
+            showRegScreen: false,
+        }));
     }
 </script>
 
@@ -55,11 +64,19 @@
                 placeholder="Re-type Password"
             />
         </div>
-        <div class="mt-5">
-            <button
-                class="btn btn-primary bg-blue-400 px-2 py-2 text-white rounded-lg hover:bg-blue-600 w-full"
-                on:click={signup}>Sign Up</button
-            >
+        <div class="flex row-auto justify-between">
+            <div class="mt-5">
+                <button
+                    class="btn btn-primary bg-green-400 px-10 py-2 mr-2 text-white rounded-lg hover:bg-green-600 w-full"
+                    on:click={signup}>Sign Up</button
+                >
+            </div>
+            <div class="mt-5">
+                <button
+                    class="btn btn-primary bg-blue-400 px-6 py-2 text-white rounded-lg hover:bg-blue-600 w-full"
+                    on:click={goBack}>Back</button
+                >
+            </div>
         </div>
     </div>
     <div class="footer mt-10">Made with ❤️ in Adelaide, SA</div>
