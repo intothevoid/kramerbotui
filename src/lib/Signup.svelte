@@ -23,7 +23,7 @@
 </script>
 
 <div class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-    <h1 class="py-2 mb-6 text-5xl title">Kramer's Deals.</h1>
+    <h1 class="py-2 mb-6 text-5xl title">Kramer's Deals</h1>
     <img
         class="rounded-full mb-4"
         src="/assets/kramer-drink.gif"
