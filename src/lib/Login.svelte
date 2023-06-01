@@ -1,5 +1,6 @@
 <script>
     import { userStore } from "./userStore";
+    import { toast } from "@zerodevx/svelte-toast";
 
     let username = "";
     let password = "";
@@ -14,19 +15,29 @@
                 isLoggedIn: true,
                 username: { username },
             }));
+        } else {
+            toast.push("Incorrect username or password.");
         }
+    }
+
+    async function signup() {
+        // show signup page
+        userStore.update((state) => ({
+            ...state,
+            showRegScreen: true,
+        }));
     }
 </script>
 
 <div class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-    <h1 class="py-2 mb-6 text-7xl title">Kramer's Deals.</h1>
+    <h1 class="py-2 mb-6 text-5xl title">Kramer's Deals.</h1>
     <img
         class="rounded-full mb-4"
         src="/assets/kramer-drink.gif"
         alt="Kramer Gif"
     />
     <h2 class="py-2 mb-4 text-md text-gray-600">
-        Please login or register to continue.
+        Please login or signup to continue.
     </h2>
     <div class="p-4 bg-white rounded shadow-lg">
         <div>
@@ -52,7 +63,7 @@
             >
             <button
                 class="btn btn-primary bg-green-400 px-2 py-2 text-white rounded-lg hover:bg-green-600 w-full"
-                on:click={login}>Sign Up</button
+                on:click={signup}>Sign Up</button
             >
         </div>
     </div>

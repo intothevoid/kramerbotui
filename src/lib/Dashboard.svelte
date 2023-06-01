@@ -131,8 +131,15 @@
         <!-- Add status information here -->
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-gray-100 text-center py-3 mt-20">
-        Made with ❤️ in Adelaide, SA
-    </footer>
+    <div class="footer mt-10">Made with ❤️ in Adelaide, SA</div>
 </div>
+
+<style>
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+    }
+</style>
