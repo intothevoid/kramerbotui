@@ -1,18 +1,37 @@
 <script>
-    import { loginTrue, signup } from "../userStore";
+    import { SERVER_URL } from "../config";
+    import { loginFalse, loginTrue, signup } from "../userStore";
     import { toast } from "@zerodevx/svelte-toast";
 
     let username = "";
     let password = "";
 
     async function login() {
-        // login API call
+        try {
+            // login API call
+            const response = await fetch(`${SERVER_URL}/authenticate`, {
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password,
+                }),
+            });
 
-        if (username === "admin" && password === "password") {
-            toast.push("Welcome! You signed in successfully!");
-            loginTrue();
-        } else {
-            toast.push("Incorrect username or password.");
+            const data = await response.json();
+
+            if (response.ok) {
+                toast.push("Welcome! You signed in successfully!");
+                loginTrue();
+            } else {
+                toast.push(`Incorrect username or password. Error: ${data}`);
+                loginFalse();
+            }
+        } catch (error) {
+            toast.push(`Unknown authentication error. Error: ${error}`);
+            loginFalse();
         }
     }
 </script>
