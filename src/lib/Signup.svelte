@@ -1,45 +1,82 @@
 <script>
     import { toast } from "@zerodevx/svelte-toast";
-    import { userStore } from "./userStore";
+    import { loginFalse, loginTrue, userStore } from "./userStore";
 
     let username = "";
     let password = "";
     let passwordRepeat = "";
     let chatId = "";
 
-    async function verifyPass() {
-        // check if password is same
-    }
-
-    async function signup() {
-        const response = await fetch("https://192.168.1.200:8080/signup", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                chatId: chatId,
-                username: username,
-                password: password,
-            }),
-        });
-
-        if (response.ok) {
-            userStore.update((state) => ({
-                ...state,
-                showRegScreen: false,
-                username: { username },
-            }));
-        } else {
-            toast.push("Error. Inccorect details entered.");
+    const validateInputs = () => {
+        // check for empty vals
+        if (
+            username === "" ||
+            password === "" ||
+            chatId === "" ||
+            passwordRepeat === ""
+        ) {
+            toast.push("Please fill in all values!");
+            return false;
         }
-    }
 
-    async function goBack() {
+        // check if chatId is numeric
+        if (!/^\d+$/.test(chatId)) {
+            toast.push("Chat ID should only contain numbers!");
+            chatId = "";
+            return false;
+        }
+
+        // check if password is same
+        if (password !== passwordRepeat) {
+            toast.push("Passwords do not match!");
+            password = "";
+            passwordRepeat = "";
+
+            return false;
+        }
+
+        return true;
+    };
+
+    const resetUser = () => {
         userStore.update((state) => ({
             ...state,
-            showRegScreen: false,
+            username: "",
+            chatId: "",
         }));
+    };
+
+    async function signup() {
+        try {
+            if (!validateInputs()) {
+                return;
+            }
+
+            const response = await fetch("http://localhost:3000/signup", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    chatId: chatId,
+                    username: username,
+                    password: password,
+                }),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                toast.push("Welcome! You signed in successfully!");
+                loginTrue();
+            } else {
+                toast.push("Error. Check details provided.");
+                loginFalse();
+                resetUser();
+            }
+        } catch (error) {
+            toast.push("Error. Check details provided.");
+            resetUser();
+        }
     }
 </script>
 
@@ -95,7 +132,7 @@
             <div class="mt-5">
                 <button
                     class="btn btn-primary bg-blue-400 px-6 py-2 text-white rounded-lg hover:bg-blue-600 w-full"
-                    on:click={goBack}>Back</button
+                    on:click={loginFalse}>Back</button
                 >
             </div>
         </div>

@@ -4,8 +4,8 @@ import {writable} from "svelte/store";
 export const userStore = writable({
     isLoggedIn: false,
     showRegScreen: false,
-    username: null,
-    chatId: null
+    username: "",
+    chatId: ""
 });
 
 export async function loginFalse() {
