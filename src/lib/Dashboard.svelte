@@ -1,4 +1,7 @@
 <script>
+    import { onMount } from "svelte";
+    import { toast } from "@zerodevx/svelte-toast";
+    import { SERVER_URL } from "../config";
     import { loginFalse, userStore } from "../userStore";
 
     let username;
@@ -11,6 +14,8 @@
 
     let watch = "";
     let watches = [];
+    let ozbSent = 0;
+    let amzSent = 0;
 
     let ozbargainOptions = {
         goodDeals: false,
@@ -34,6 +39,40 @@
     function logout() {
         loginFalse();
     }
+
+    function resetUserData() {
+        ozbargainOptions.goodDeals = false;
+        ozbargainOptions.awesomeDeals = false;
+        amazonOptions.dailyDeals = false;
+        amazonOptions.dailyWeekly = false;
+        ozbSent = 0;
+        amzSent = 0;
+    }
+
+    async function loadUserData() {
+        try {
+            const response = await fetch(`${SERVER_URL}/users/${chatId}`);
+            if (!response.ok) {
+                toast.push(`Connection error! status: ${response.status}`);
+                resetUserData();
+            } else {
+                const data = await response.json();
+                watches = data.Keywords;
+                ozbargainOptions.goodDeals = data.OzbGood;
+                ozbargainOptions.awesomeDeals = data.OzbSuper;
+                amazonOptions.dailyDeals = data.AmzDaily;
+                amazonOptions.dailyWeekly = data.AmzWeekly;
+                ozbSent = data.OzbSent.length; // assuming OzbSent is an array
+                amzSent = data.AmzSent.length; // assuming AmzSent is an array
+            }
+        } catch (error) {
+            toast.push(`Connection error! Unable to reach server.`);
+            resetUserData();
+        }
+    }
+
+    // Load user data on component mount
+    onMount(loadUserData);
 </script>
 
 <div class="mx-auto px-4 bg-gray-100 rounded shadow-lg p-6 min-h-screen">

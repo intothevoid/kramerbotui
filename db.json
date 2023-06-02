@@ -41,6 +41,48 @@
       ]
     }
   },
+  "user": [
+    {
+      "ChatID": 50470584,
+      "Username": "Bindok",
+      "OzbGood": false,
+      "OzbSuper": true,
+      "Keywords": [
+        "ps5",
+        "camera"
+      ],
+      "OzbSent": [
+        "446443",
+        "744432"
+      ],
+      "AmzDaily": true,
+      "AmzWeekly": false,
+      "AmzSent": [
+        "444543",
+        "446542"
+      ]
+    },
+    {
+      "ChatID": 12345,
+      "Username": "JohnWick",
+      "OzbGood": false,
+      "OzbSuper": true,
+      "Keywords": [
+        "nunchucks",
+        "guns"
+      ],
+      "OzbSent": [
+        "746443",
+        "746432"
+      ],
+      "AmzDaily": true,
+      "AmzWeekly": false,
+      "AmzSent": [
+        "756543",
+        "546532"
+      ]
+    }
+  ],
   "deals": {
     "AMZ": [
       {
