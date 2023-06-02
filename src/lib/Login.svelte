@@ -7,7 +7,6 @@
 
     async function login() {
         // login API call
-        // TODO login check
 
         if (username === "admin" && password === "password") {
             userStore.update((state) => ({

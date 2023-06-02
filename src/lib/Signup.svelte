@@ -1,4 +1,5 @@
 <script>
+    import { toast } from "@zerodevx/svelte-toast";
     import { userStore } from "./userStore";
 
     let username = "";
@@ -11,7 +12,27 @@
     }
 
     async function signup() {
-        // signup API call
+        const response = await fetch("https://192.168.1.200:8080/signup", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                chatId: chatId,
+                username: username,
+                password: password,
+            }),
+        });
+
+        if (response.ok) {
+            userStore.update((state) => ({
+                ...state,
+                showRegScreen: false,
+                username: { username },
+            }));
+        } else {
+            toast.push("Error. Inccorect details entered.");
+        }
     }
 
     async function goBack() {
