@@ -8,6 +8,40 @@
     let passwordRepeat = "";
     let chatId = "";
 
+    async function validateChatId() {
+        try {
+            const response = await fetch(`${SERVER_URL}/users/${chatId}`);
+
+            if (!response.ok) {
+                chatId = "";
+                toast.push(
+                    "Chat ID is invalid. Message @kramerbot on Telegram to get one."
+                );
+                return false;
+            }
+
+            const data = await response.json();
+
+            // If 'user' field is missing or null, the chat ID is invalid
+            if (!data.user) {
+                chatId = "";
+                toast.push(
+                    "Chat ID is invalid. Message @kramerbot on Telegram to get one."
+                );
+                return false;
+            }
+
+            // If we reach here, it means the chat ID is valid
+            return true;
+        } catch (error) {
+            chatId = "";
+            toast.push(
+                "Chat ID is invalid. Message @kramerbot on Telegram to get one."
+            );
+            return false;
+        }
+    }
+
     const validateInputs = () => {
         // check for empty vals
         if (
@@ -58,6 +92,10 @@
     async function signup() {
         try {
             if (!validateInputs()) {
+                return;
+            }
+
+            if (!(await validateChatId())) {
                 return;
             }
 

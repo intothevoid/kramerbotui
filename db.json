@@ -20,8 +20,8 @@
         "446542"
       ]
     },
-    "90450994": {
-      "ChatID": 60470984,
+    "12345": {
+      "ChatID": 12345,
       "Username": "JohnWick",
       "OzbGood": false,
       "OzbSuper": true,
@@ -134,8 +134,8 @@
     ]
   },
   "signup": {
-    "chatId": "2345345",
-    "username": "sdfsdf",
-    "password": ""
+    "chatId": "11",
+    "username": "11",
+    "password": "11"
   }
 }
