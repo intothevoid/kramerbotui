@@ -10,6 +10,7 @@
 
     async function validateChatId() {
         try {
+            // Get data from server
             const response = await fetch(`${SERVER_URL}/users/${chatId}`);
 
             if (!response.ok) {
@@ -21,15 +22,6 @@
             }
 
             const data = await response.json();
-
-            // If 'user' field is missing or null, the chat ID is invalid
-            if (!data.user) {
-                chatId = "";
-                toast.push(
-                    "Chat ID is invalid. Message @kramerbot on Telegram to get one."
-                );
-                return false;
-            }
 
             // If we reach here, it means the chat ID is valid
             return true;
@@ -129,7 +121,7 @@
 </script>
 
 <div class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-    <h1 class="py-2 mb-6 text-5xl title">Kramer's Deals</h1>
+    <h1 class="py-2 mb-6 text-5xl title">Kramer's Deals 💰</h1>
     <img
         class="rounded-full mb-4"
         src="/assets/kramer-drink.gif"

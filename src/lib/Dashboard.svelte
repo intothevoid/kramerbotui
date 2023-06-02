@@ -77,7 +77,9 @@
 
 <div class="mx-auto px-4 bg-gray-100 rounded shadow-lg p-6 min-h-screen">
     <div class="flex items-center justify-between py-4">
-        <h1 class="text-4xl">Hello {username !== "" ? username : "User"}!</h1>
+        <h1 class="text-4xl">
+            Hello {username !== "" ? username : "User"}! 😎
+        </h1>
         <button
             class="bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded"
             on:click={logout}>Logout</button
@@ -123,7 +125,7 @@
 
     <!-- Ozbargain Panel -->
     <div class="mt-4 p-4 bg-white rounded shadow">
-        <h2 class="text-lg mb-2 font-bold">Ozbargain</h2>
+        <h2 class="text-lg mb-2 font-bold">🟠 Ozbargain</h2>
         <div>
             <label>
                 <input
@@ -146,7 +148,7 @@
 
     <!-- Amazon Panel -->
     <div class="mt-4 p-4 bg-white rounded shadow">
-        <h2 class="text-lg font-bold mb-2">Amazon</h2>
+        <h2 class="text-lg font-bold mb-2">🅰️ Amazon</h2>
         <div>
             <label>
                 <input
@@ -169,7 +171,15 @@
 
     <!-- Status Panel -->
     <div class="mt-4 p-4 bg-white rounded shadow">
-        <h2 class="text-lg font-bold mb-10">Statistics</h2>
+        <h2 class="text-lg font-bold mb-2">📈 Statistics</h2>
+        <ul>
+            <li>
+                No. of Ozbargain deals sent to you: {ozbSent}
+            </li>
+            <li>
+                No. of Amazon deals sent to you: {amzSent}
+            </li>
+        </ul>
         <!-- Add status information here -->
     </div>
 
