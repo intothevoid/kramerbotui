@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "rollup": "^2.3.4",
     "@sveltejs/vite-plugin-svelte": "^2.0.3",
     "@zerodevx/svelte-toast": "^0.9.3",
     "autoprefixer": "^10.4.14",
