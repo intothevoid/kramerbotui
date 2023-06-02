@@ -2,6 +2,7 @@
     import { toast } from "@zerodevx/svelte-toast";
     import { loginFalse, loginTrue, userStore } from "../userStore";
     import { SERVER_URL } from "../config.js";
+    import MD5 from "crypto-js/md5";
 
     let username = "";
     let password = "";
@@ -91,6 +92,9 @@
                 return;
             }
 
+            // get md5 hash of password
+            const passwordMD5 = MD5(password);
+
             const response = await fetch(`${SERVER_URL}/signup`, {
                 method: "POST",
                 headers: {
@@ -99,7 +103,7 @@
                 body: JSON.stringify({
                     chatId: chatId,
                     username: username,
-                    password: password,
+                    password: passwordMD5,
                 }),
             });
 

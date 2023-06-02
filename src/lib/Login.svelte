@@ -2,12 +2,16 @@
     import { SERVER_URL } from "../config";
     import { loginFalse, loginTrue, signup } from "../userStore";
     import { toast } from "@zerodevx/svelte-toast";
+    import MD5 from "crypto-js/md5";
 
     let username = "";
     let password = "";
 
     async function login() {
         try {
+            // get md5 hash of password
+            const passwordMD5 = MD5(password);
+
             // login API call
             const response = await fetch(`${SERVER_URL}/authenticate`, {
                 method: "post",
@@ -16,7 +20,7 @@
                 },
                 body: JSON.stringify({
                     username: username,
-                    password: password,
+                    password: passwordMD5,
                 }),
             });
 
