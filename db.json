@@ -1,0 +1,141 @@
+{
+  "users": {
+    "50450954": {
+      "ChatID": 50470584,
+      "Username": "Bindok",
+      "OzbGood": false,
+      "OzbSuper": true,
+      "Keywords": [
+        "ps5",
+        "camera"
+      ],
+      "OzbSent": [
+        "446443",
+        "744432"
+      ],
+      "AmzDaily": true,
+      "AmzWeekly": false,
+      "AmzSent": [
+        "444543",
+        "446542"
+      ]
+    },
+    "90450994": {
+      "ChatID": 60470984,
+      "Username": "JohnWick",
+      "OzbGood": false,
+      "OzbSuper": true,
+      "Keywords": [
+        "nunchucks",
+        "guns"
+      ],
+      "OzbSent": [
+        "746443",
+        "746432"
+      ],
+      "AmzDaily": true,
+      "AmzWeekly": false,
+      "AmzSent": [
+        "756543",
+        "546532"
+      ]
+    }
+  },
+  "deals": {
+    "AMZ": [
+      {
+        "id": "00dcf964b65e0d9526e0911e1f49781a98df4b39",
+        "title": "Samsung Galaxy Z Flip 4 5G, 128GB, Graphite - down 31.17% ($452.35) to $999.00 from $1,451.35",
+        "url": "https://au.camelcamelcamel.com/product/B0B8MS72PH",
+        "time": "Tue, 30 May 2023 08:47:50 PDT",
+        "image": "",
+        "dealtype": 5
+      },
+      {
+        "id": "7843362cab0babc3065cc827d4abf8099e798447",
+        "title": "Apple 2023 MacBook Pro Laptop ...s with iPhone/iPad; Space Grey - down 9.13% ($452.00) to $4,497.00 from $4,949.00",
+        "url": "https://au.camelcamelcamel.com/product/B0BSHDF2KB",
+        "time": "Wed, 31 May 2023 23:41:20 PDT",
+        "image": "",
+        "dealtype": 5
+      },
+      {
+        "id": "674a1e1d8430e22458117994ff87e6aa54374e25",
+        "title": "Samsung Galaxy Z Flip 4 5G, 128GB, Pink Gold - down 30.96% ($448.00) to $999.00 from $1,447.00",
+        "url": "https://au.camelcamelcamel.com/product/B0B8MW31CW",
+        "time": "Tue, 30 May 2023 10:13:26 PDT",
+        "image": "",
+        "dealtype": 5
+      },
+      {
+        "id": "3ffae7c389bc8e81a68777c4edd8f850769fec39",
+        "title": "Asus Geforce RTX 4090 24GB GDD...TUF Gaming Graphics Card Black - down 12.03% ($394.51) to $2,884.21 from $3,278.72",
+        "url": "https://au.camelcamelcamel.com/product/B0BHD9BWFD",
+        "time": "Sun, 28 May 2023 07:10:54 PDT",
+        "image": "",
+        "dealtype": 5
+      }
+    ],
+    "OZB": [
+      {
+        "id": "778828",
+        "title": "[AfterPay] MSI GF63 i5-11400H, 8GB DDR4, 512GB SSD, RTX 3050 4GB 40W, 15.6\" FHD IPS 144Hz $809.10 Delivered @ Centre Com eBay",
+        "url": "https://www.ozbargain.com.au/node/778828",
+        "time": "ChatGPT on 02/06/2023 - 10:52  ebay.com.au",
+        "upvotes": "39",
+        "dealage": "-8h2m0s",
+        "dealtype": 1
+      },
+      {
+        "id": "778827",
+        "title": "up to 50% off Triple Wine Hampers + $12.50 Delivery ($0 C&C) @ Hamper World",
+        "url": "https://www.ozbargain.com.au/node/778827",
+        "time": "AssociatedHamperWorld on 02/06/2023 - 10:51  hamperworld.com.au",
+        "upvotes": "1",
+        "dealage": "-8h1m0s",
+        "dealtype": 1
+      },
+      {
+        "id": "778826",
+        "title": "[Afterpay] Breville Barista Express Machine, Black Sesame BES870BKS + Milk Jug Thermal $539.10 Delivered @ Bing Lee eBay",
+        "url": "https://www.ozbargain.com.au/node/778826",
+        "time": "Briefcase Mong on 02/06/2023 - 10:50  ebay.com.au",
+        "upvotes": "7",
+        "dealage": "-8h0m0s",
+        "dealtype": 1
+      },
+      {
+        "id": "778825",
+        "title": "Part-Time Cloth Nappy Bundle $281.58 (Was $469.30) Delivered @ NappyLuxe",
+        "url": "https://www.ozbargain.com.au/node/778825",
+        "time": "Associatednappyluxe on 02/06/2023 - 10:50  nappyluxe.com.au",
+        "upvotes": "0",
+        "dealage": "-8h0m0s",
+        "dealtype": 1
+      },
+      {
+        "id": "778824",
+        "title": "$10 off Lunch (10AM-4PM) & Late Night (9:30PM-5:00AM) with Minimum $15 Spend (Delivery Only, Select Postcodes Only) @ Menulog",
+        "url": "https://www.ozbargain.com.au/node/778824",
+        "time": "Fat Horny Ghost on 02/06/2023 - 10:47  menulog.com.au",
+        "upvotes": "20",
+        "dealage": "-7h57m0s",
+        "dealtype": 1
+      },
+      {
+        "id": "778823",
+        "title": "32% off Taylormade TP5 & TP5x Golf Balls 3 Dozen Packs $160 (Was $237) + Shipping ($0 SYD C&C) @ Elite Golf NSW",
+        "url": "https://www.ozbargain.com.au/node/778823",
+        "time": "AssociatedDealsBMT on 02/06/2023 - 10:43  elitegolfnsw.com.au",
+        "upvotes": "0",
+        "dealage": "-7h53m0s",
+        "dealtype": 1
+      }
+    ]
+  },
+  "signup": {
+    "chatId": "2345345",
+    "username": "sdfsdf",
+    "password": ""
+  }
+}
