@@ -1,5 +1,5 @@
 <script>
-    import { userStore } from "./userStore";
+    import { loginFalse } from "./userStore";
 
     let username = ""; // fetch username from API
     let watch = "";
@@ -25,11 +25,7 @@
     }
 
     function logout() {
-        userStore.update((state) => ({
-            ...state,
-            isLoggedIn: false,
-            username: null,
-        }));
+        loginFalse();
     }
 </script>
 

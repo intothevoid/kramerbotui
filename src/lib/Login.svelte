@@ -1,5 +1,5 @@
 <script>
-    import { userStore } from "./userStore";
+    import { loginTrue, signup } from "./userStore";
     import { toast } from "@zerodevx/svelte-toast";
 
     let username = "";
@@ -9,22 +9,10 @@
         // login API call
 
         if (username === "admin" && password === "password") {
-            userStore.update((state) => ({
-                ...state,
-                isLoggedIn: true,
-                username: { username },
-            }));
+            loginTrue();
         } else {
             toast.push("Incorrect username or password.");
         }
-    }
-
-    async function signup() {
-        // show signup page
-        userStore.update((state) => ({
-            ...state,
-            showRegScreen: true,
-        }));
     }
 </script>
 
