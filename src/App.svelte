@@ -2,7 +2,7 @@
   import Dashboard from "./lib/Dashboard.svelte";
   import Login from "./lib/Login.svelte";
   import Signup from "./lib/Signup.svelte";
-  import { userStore } from "./lib/userStore";
+  import { userStore } from "./userStore";
   import { SvelteToast } from "@zerodevx/svelte-toast";
 </script>
 

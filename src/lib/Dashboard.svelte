@@ -1,7 +1,14 @@
 <script>
-    import { loginFalse } from "./userStore";
+    import { loginFalse, userStore } from "../userStore";
 
-    let username = ""; // fetch username from API
+    let username;
+    let chatId;
+
+    $: {
+        username = $userStore.username;
+        chatId = $userStore.chatId;
+    }
+
     let watch = "";
     let watches = [];
 

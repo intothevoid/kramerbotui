@@ -1,6 +1,7 @@
 <script>
     import { toast } from "@zerodevx/svelte-toast";
-    import { loginFalse, loginTrue, userStore } from "./userStore";
+    import { loginFalse, loginTrue, userStore } from "../userStore";
+    import { SERVER_URL } from "../config.js";
 
     let username = "";
     let password = "";
@@ -46,13 +47,21 @@
         }));
     };
 
+    const updateUser = () => {
+        userStore.update((state) => ({
+            ...state,
+            username: username,
+            chatId: chatId,
+        }));
+    };
+
     async function signup() {
         try {
             if (!validateInputs()) {
                 return;
             }
 
-            const response = await fetch("http://localhost:3000/signup", {
+            const response = await fetch(`${SERVER_URL}/signup`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -67,11 +76,12 @@
             if (response.ok) {
                 const data = await response.json();
                 toast.push("Welcome! You signed in successfully!");
+                updateUser();
                 loginTrue();
             } else {
                 toast.push("Error. Check details provided.");
-                loginFalse();
                 resetUser();
+                loginFalse();
             }
         } catch (error) {
             toast.push("Error. Check details provided.");

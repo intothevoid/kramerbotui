@@ -1,5 +1,5 @@
 <script>
-    import { loginTrue, signup } from "./userStore";
+    import { loginTrue, signup } from "../userStore";
     import { toast } from "@zerodevx/svelte-toast";
 
     let username = "";
@@ -9,6 +9,7 @@
         // login API call
 
         if (username === "admin" && password === "password") {
+            toast.push("Welcome! You signed in successfully!");
             loginTrue();
         } else {
             toast.push("Incorrect username or password.");
