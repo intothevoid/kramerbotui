@@ -10,7 +10,7 @@
 
     async function validateChatId() {
         try {
-            const response = await fetch(`${SERVER_URL}/user/${chatId}`);
+            const response = await fetch(`${SERVER_URL}/users/${chatId}`);
 
             if (!response.ok) {
                 chatId = "";
