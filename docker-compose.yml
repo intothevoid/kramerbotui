@@ -1,12 +1,43 @@
-version: '3.4'
-
+version: '3.7'
 services:
-  kramerbotui:
-    image: kramerbotui
+  kramer-mongo:
+    image: mongo:4.4.18
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - mongo-network
+    ports:
+      - 27017:27017
+    container_name: kramer-mongo
+
+  kramerbot:
     build:
-      context: .
-      dockerfile: ./Dockerfile
-    environment:
-      NODE_ENV: production
+      context: https://github.com/intothevoid/kramerbot.git#feature/svelte-connect
+      dockerfile: Dockerfile
+    env_file: token.env
+    networks:
+      - mongo-network
+    ports:
+      - 3179:3179
+    depends_on:
+      - kramer-mongo
+    container_name: kramerbot
+
+  kramerbot-ui:
+    build:
+      context: https://github.com/intothevoid/kramerbotui.git#main
+      dockerfile: Dockerfile.prod
+    networks:
+      - mongo-network
     ports:
       - 5173:5173
+    depends_on:
+      - kramerbot
+    container_name: kramerbot-ui
+
+networks:
+  mongo-network:
+    driver: bridge
+
+volumes:
+  mongo-data:
