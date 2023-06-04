@@ -1,0 +1,31 @@
+FROM node:lts-alpine
+
+# Set environment to production
+ENV NODE_ENV=production
+
+# Set work directory in the container
+WORKDIR /usr/src/app
+
+# Copy package.json and package-lock.json
+COPY ["package.json", "package-lock.json*", "./"]
+
+# Install only production dependencies
+RUN npm install --production --silent && npm install -g serve
+
+# Copy rest of the application code
+COPY . .
+
+# Change ownership to node user for better security
+RUN chown -R node /usr/src/app
+
+# Switch to node user
+USER node
+
+# Expose the port the app runs on
+EXPOSE 5173
+
+# Build application
+RUN npm run build
+
+# Start the application
+CMD ["serve", "-s", "dist", "-l", "5173"]
