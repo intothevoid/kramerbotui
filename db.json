@@ -1,25 +1,5 @@
 {
   "users": {
-    "50450954": {
-      "ChatID": 50470584,
-      "Username": "Bindok",
-      "OzbGood": false,
-      "OzbSuper": true,
-      "Keywords": [
-        "ps5",
-        "camera"
-      ],
-      "OzbSent": [
-        "446443",
-        "744432"
-      ],
-      "AmzDaily": true,
-      "AmzWeekly": false,
-      "AmzSent": [
-        "444543",
-        "446542"
-      ]
-    },
     "12345": {
       "ChatID": 12345,
       "Username": "JohnWick",
@@ -38,6 +18,26 @@
       "AmzSent": [
         "756543",
         "546532"
+      ]
+    },
+    "50450954": {
+      "ChatID": 50470584,
+      "Username": "Bindok",
+      "OzbGood": false,
+      "OzbSuper": true,
+      "Keywords": [
+        "ps5",
+        "camera"
+      ],
+      "OzbSent": [
+        "446443",
+        "744432"
+      ],
+      "AmzDaily": true,
+      "AmzWeekly": false,
+      "AmzSent": [
+        "444543",
+        "446542"
       ]
     }
   },
@@ -179,5 +179,9 @@
     "chatId": "11",
     "username": "11",
     "password": "11"
+  },
+  "authenticate": {
+    "username": "test",
+    "password": "098f6bcd4621d373cade4e832627b4f6"
   }
 }

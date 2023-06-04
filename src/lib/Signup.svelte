@@ -1,6 +1,12 @@
 <script>
     import { toast } from "@zerodevx/svelte-toast";
-    import { loginFalse, loginTrue, userStore } from "../userStore";
+    import {
+        loginFalse,
+        loginTrue,
+        resetUser,
+        updateUser,
+        userStore,
+    } from "../userStore";
     import { SERVER_URL } from "../config.js";
     import MD5 from "crypto-js/md5";
 
@@ -21,8 +27,6 @@
                 );
                 return false;
             }
-
-            const data = await response.json();
 
             // If we reach here, it means the chat ID is valid
             return true;
@@ -54,6 +58,31 @@
             return false;
         }
 
+        // check if username is alphanumeric
+        let alphanumeric = /^[a-z0-9]+$/i;
+        if (!alphanumeric.test(username)) {
+            toast.push("Username should only contain alphabets and numbers!");
+            username = "";
+            return false;
+        }
+
+        // check if password is valid
+        let passwordRegex = /[\s\x00-\x1F\x7F\/\\|><&;]|[^ -~]/;
+        if (passwordRegex.test(password)) {
+            toast.push("Password contains invalid characters, try again");
+            password = "";
+            passwordRepeat = "";
+            return false;
+        }
+
+        // check password length
+        if (password.length < 5) {
+            toast.push("Password should be atleast 5 characters long!");
+            password = "";
+            passwordRepeat = "";
+            return false;
+        }
+
         // check if password is same
         if (password !== passwordRepeat) {
             toast.push("Passwords do not match!");
@@ -66,23 +95,8 @@
         return true;
     };
 
-    const resetUser = () => {
-        userStore.update((state) => ({
-            ...state,
-            username: "",
-            chatId: "",
-        }));
-    };
-
-    const updateUser = () => {
-        userStore.update((state) => ({
-            ...state,
-            username: username,
-            chatId: chatId,
-        }));
-    };
-
     async function signup() {
+        let errRsp = null;
         try {
             if (!validateInputs()) {
                 return;
@@ -93,7 +107,7 @@
             }
 
             // get md5 hash of password
-            const passwordMD5 = MD5(password);
+            const passwordMD5 = MD5(password).toString();
 
             const response = await fetch(`${SERVER_URL}/signup`, {
                 method: "POST",
@@ -107,18 +121,21 @@
                 }),
             });
 
+            const data = await response.json();
+            if (data) {
+                errRsp = data["result"];
+            }
             if (response.ok) {
-                const data = await response.json();
                 toast.push("Welcome! You signed in successfully!");
-                updateUser();
+                updateUser(username, chatId);
                 loginTrue();
             } else {
-                toast.push("Error. Check details provided.");
+                toast.push(`Signup failed. Error: ${errRsp}`);
                 resetUser();
                 loginFalse();
             }
         } catch (error) {
-            toast.push("Error. Check details provided.");
+            toast.push(`Signup failed. Error: ${errRsp} ${error}`);
             resetUser();
         }
     }

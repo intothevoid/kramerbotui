@@ -1,6 +1,12 @@
 <script>
     import { SERVER_URL } from "../config";
-    import { loginFalse, loginTrue, signup } from "../userStore";
+    import {
+        loginFalse,
+        loginTrue,
+        resetUser,
+        signup,
+        updateUser,
+    } from "../userStore";
     import { toast } from "@zerodevx/svelte-toast";
     import MD5 from "crypto-js/md5";
 
@@ -10,11 +16,11 @@
     async function login() {
         try {
             // get md5 hash of password
-            const passwordMD5 = MD5(password);
+            const passwordMD5 = MD5(password).toString();
 
             // login API call
             const response = await fetch(`${SERVER_URL}/authenticate`, {
-                method: "post",
+                method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -25,16 +31,26 @@
             });
 
             const data = await response.json();
+            let chatId = null;
+            let errRsp = null;
+            if (data) {
+                chatId = data["result"];
+            }
 
-            if (response.ok) {
+            if (response.ok && chatId) {
                 toast.push("Welcome! You signed in successfully!");
+                updateUser(username, chatId);
                 loginTrue();
             } else {
-                toast.push(`Incorrect username or password. Error: ${data}`);
+                toast.push(
+                    `Incorrect username or password. Error: ${data["result"]}`
+                );
+                resetUser();
                 loginFalse();
             }
         } catch (error) {
             toast.push(`Unknown authentication error. Error: ${error}`);
+            resetUser();
             loginFalse();
         }
     }

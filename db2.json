@@ -136,6 +136,14 @@
   "signup": {
     "chatId": "12345",
     "username": "john",
-    "password": "wick"
+    "password": {
+      "words": [
+        -1761028501,
+        -1824987922,
+        1868413338,
+        1710359262
+      ],
+      "sigBytes": 16
+    }
   }
 }

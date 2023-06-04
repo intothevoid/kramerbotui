@@ -1,4 +1,4 @@
-import {writable} from "svelte/store";
+import { writable } from "svelte/store";
 
 // Create store
 export const userStore = writable({
@@ -30,3 +30,19 @@ export async function loginTrue() {
         isLoggedIn: true,
     }));
 }
+
+export async function resetUser() {
+    userStore.update((state) => ({
+        ...state,
+        username: "",
+        chatId: "",
+    }));
+}
+
+export async function updateUser(username, chatId) {
+    userStore.update((state) => ({
+        ...state,
+        username: username,
+        chatId: chatId,
+    }));
+} 
