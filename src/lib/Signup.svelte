@@ -147,6 +147,8 @@
         class="rounded-full mb-4"
         src="/assets/kramer-drink.gif"
         alt="Kramer Gif"
+        width="60%"
+        height="60%"
     />
     <h2 class="py-2 mb-4 text-md text-gray-600">Register your account</h2>
     <div class="p-4 bg-white rounded shadow-lg">
