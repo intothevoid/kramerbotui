@@ -147,8 +147,7 @@
         class="rounded-full mb-4"
         src="/assets/kramer-drink.gif"
         alt="Kramer Gif"
-        width="60%"
-        height="60%"
+        width="300rem"
     />
     <h2 class="py-2 mb-4 text-md text-gray-600">Register your account</h2>
     <div class="p-4 bg-white rounded shadow-lg">
@@ -185,16 +184,16 @@
                 placeholder="Re-type Password"
             />
         </div>
-        <div class="flex row-auto justify-between">
+        <div class="flex row-auto justify-evenly">
             <div class="mt-5">
                 <button
-                    class="btn btn-primary bg-green-400 px-10 py-2 mr-2 text-white rounded-lg hover:bg-green-600 w-full"
+                    class="btn btn-primary bg-green-400 px-4 py-2 text-white rounded-lg hover:bg-green-600 w-full"
                     on:click={signup}>Sign Up</button
                 >
             </div>
             <div class="mt-5">
                 <button
-                    class="btn btn-primary bg-blue-400 px-6 py-2 text-white rounded-lg hover:bg-blue-600 w-full"
+                    class="btn btn-primary bg-blue-400 px-auto px-4 py-2 text-white rounded-lg hover:bg-blue-600 w-full"
                     on:click={loginFalse}>Back</button
                 >
             </div>
