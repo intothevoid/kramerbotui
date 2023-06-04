@@ -3,9 +3,10 @@
     import { toast } from "@zerodevx/svelte-toast";
     import { SERVER_URL } from "../config";
     import { loginFalse, userStore } from "../userStore";
+    import Deals from "./Deals.svelte";
 
-    let username;
-    let chatId;
+    let username = "";
+    let chatId = "";
 
     $: {
         username = $userStore.username;
@@ -49,6 +50,37 @@
         amzSent = 0;
     }
 
+    async function savePrefs() {
+        let errRsp = "Unknown error";
+        try {
+            const response = await fetch(`${SERVER_URL}/preferences`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    chatId: chatId.toString(),
+                    ozbGood: ozbargainOptions.goodDeals,
+                    ozbSuper: ozbargainOptions.awesomeDeals,
+                    amzDaily: amazonOptions.topDaily,
+                    amzWeekly: amazonOptions.topWeekly,
+                    keywords: watches,
+                }),
+            });
+            const data = await response.json();
+            if (data) {
+                errRsp = data["result"];
+            }
+            if (!response.ok) {
+                toast.push(`Unable to save preferences. Error: ${errRsp}`);
+            } else {
+                toast.push("Your preferences were saved successfully!");
+            }
+        } catch (error) {
+            toast.push(`Unable to save preferences. Error: ${errRsp} ${error}`);
+        }
+    }
+
     async function loadUserData() {
         let errRsp = "Unknown error";
         try {
@@ -58,7 +90,7 @@
                 errRsp = data["result"];
             }
             if (!response.ok) {
-                toast.push(`Unable to load user data! Error: ${errRsp}`);
+                toast.push(`Unable to load user data. Error: ${errRsp}`);
                 resetUserData();
                 loginFalse();
             } else {
@@ -101,8 +133,8 @@
             placeholder="Enter keyword(s) to watch"
         />
         <button
-            class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded"
-            on:click={addWatch}>Add Watch</button
+            class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-8 rounded"
+            on:click={addWatch}>Add</button
         >
     </div>
 
@@ -183,6 +215,16 @@
         </ul>
         <!-- Add status information here -->
     </div>
+
+    <div class="mt-4">
+        <button
+            class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-8 rounded"
+            on:click={savePrefs}>Save</button
+        >
+    </div>
+
+    <!-- List all the latest deals available as tables -->
+    <Deals />
 
     <div class="footer mt-10">Made with ❤️ in Adelaide, SA</div>
 </div>
