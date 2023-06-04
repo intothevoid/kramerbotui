@@ -44,73 +44,63 @@
 <div>
     <!-- Deals Panel -->
     <div class="mt-4 p-4 bg-white rounded shadow">
-        <h2 class="text-lg font-bold mb-2">🛍️ Latest Deals</h2>
+        <h2 class="text-md font-bold mb-2">🛍️ Latest Deals</h2>
 
         {#if dealData.AMZ.length === 0 && dealData.OZB.length === 0}
             <p>No deals available or unable to retrieve deals.</p>
         {:else}
             <div>
                 <!-- Amazon Deals -->
-                <h3 class="text-lg font-semibold mt-4">️️🅰️ Amazon Deals</h3>
+                <h3 class="text-md font-semibold mt-4">️️🅰️ Amazon Deals</h3>
                 {#if dealData.AMZ.length === 0}
                     <p>No Amazon deals available.</p>
                 {:else}
                     <!-- Amazon deals table... -->
-                    <table class="table-auto w-full mt-2">
+                    <table>
                         <thead>
                             <tr>
-                                <th class="px-4 py-2 text-justify">Title</th>
-                                <th class="px-4 py-2 text-justify">Time</th>
-                                <th class="px-4 py-2 text-justify">Link</th>
+                                <th>Title</th>
+                                <th>Time</th>
+                                <th>Link</th>
                             </tr>
                         </thead>
                         <tbody>
                             {#each dealData.AMZ as deal}
                                 <tr>
-                                    <td class="text-sm border px-4 py-2"
-                                        >{deal.title}</td
-                                    >
-                                    <td class="text-sm border px-4 py-2"
-                                        >{deal.time}</td
-                                    >
-                                    <td class="text-sm border px-4 py-2"
-                                        ><a href={deal.url}>Link</a></td
-                                    >
+                                    <td>{deal.title}</td>
+                                    <td>{deal.time}</td>
+                                    <td><a href={deal.url}>Link</a></td>
                                 </tr>
                             {/each}
                         </tbody>
                     </table>
                 {/if}
                 <!-- Ozbargain Deals -->
-                <h3 class="text-lg font-semibold mt-4">🟠 Ozbargain Deals</h3>
+                <h3 class="text-md font-semibold mt-4">🟠 Ozbargain Deals</h3>
                 {#if dealData.OZB.length === 0}
                     <p>No Ozbargain deals available.</p>
                 {:else}
                     <!-- Ozbargain deals table... -->
-                    <table class="table-auto w-full mt-2">
+                    <table>
                         <thead>
                             <tr>
-                                <th class="px-4 py-2">Title</th>
-                                <th class="px-4 py-2">Time</th>
-                                <th class="px-4 py-2">Upvotes</th>
-                                <th class="px-4 py-2">Link</th>
+                                <th>Title</th>
+                                <th>Time</th>
+                                <th>Upvotes</th>
+                                <th>Link</th>
                             </tr>
                         </thead>
                         <tbody>
                             {#each dealData.OZB as deal}
                                 <tr>
-                                    <td class="text-sm border px-4 py-2"
-                                        >{deal.title}</td
-                                    >
-                                    <td class="text-sm border px-4 py-2"
-                                        >{deal.time}</td
-                                    >
-                                    <td class="text-sm border px-4 py-2"
-                                        >{deal.upvotes}</td
-                                    >
-                                    <td class="text-sm border px-4 py-2"
-                                        ><a href={deal.url}>Link</a></td
-                                    >
+                                    <td>{deal.title}</td>
+                                    <td>{deal.time}</td>
+                                    <td class={deal.upvotes > 25 ? "hot" : ""}>
+                                        {deal.upvotes > 25
+                                            ? "🔥 "
+                                            : ""}{deal.upvotes}
+                                    </td>
+                                    <td><a href={deal.url}>Link</a></td>
                                 </tr>
                             {/each}
                         </tbody>
@@ -120,3 +110,26 @@
         {/if}
     </div>
 </div>
+
+<style>
+    /* Customize your styles */
+    table {
+        width: 100%;
+        border-spacing: 0;
+        border-collapse: collapse;
+    }
+    th,
+    td {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        text-align: left;
+        font-size: small;
+    }
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    .hot {
+        color: red;
+        font-weight: bold;
+    }
+</style>

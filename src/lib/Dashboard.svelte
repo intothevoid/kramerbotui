@@ -116,7 +116,7 @@
 
 <div class="mx-auto px-4 bg-gray-100 rounded shadow-lg p-6 min-h-screen">
     <div class="flex items-center justify-between py-4">
-        <h1 class="text-4xl">
+        <h1 class="text-3xl">
             Hello {username !== "" ? username : "User"}! 😎
         </h1>
         <button
@@ -164,9 +164,9 @@
 
     <!-- Ozbargain Panel -->
     <div class="mt-4 p-4 bg-white rounded shadow">
-        <h2 class="text-lg mb-2 font-bold">🟠 Ozbargain</h2>
+        <h2 class="text-md mb-2 font-bold">🟠 Ozbargain</h2>
         <div>
-            <label>
+            <label class="text-sm">
                 <input
                     type="checkbox"
                     bind:checked={ozbargainOptions.goodDeals}
@@ -175,7 +175,7 @@
             </label>
         </div>
         <div>
-            <label>
+            <label class="text-sm">
                 <input
                     type="checkbox"
                     bind:checked={ozbargainOptions.awesomeDeals}
@@ -187,15 +187,15 @@
 
     <!-- Amazon Panel -->
     <div class="mt-4 p-4 bg-white rounded shadow">
-        <h2 class="text-lg font-bold mb-2">🅰️ Amazon</h2>
+        <h2 class="text-md font-bold mb-2">🅰️ Amazon</h2>
         <div>
-            <label>
+            <label class="text-sm">
                 <input type="checkbox" bind:checked={amazonOptions.topDaily} />
                 Watch top daily deals
             </label>
         </div>
         <div>
-            <label>
+            <label class="text-sm">
                 <input type="checkbox" bind:checked={amazonOptions.topWeekly} />
                 Watch top weekly deals
             </label>
@@ -204,8 +204,8 @@
 
     <!-- Status Panel -->
     <div class="mt-4 p-4 bg-white rounded shadow">
-        <h2 class="text-lg font-bold mb-2">📈 Statistics</h2>
-        <ul>
+        <h2 class="text-md font-bold mb-2">📈 Statistics</h2>
+        <ul class="text-sm">
             <li>
                 No. of Ozbargain deals sent to you: {ozbSent}
             </li>
