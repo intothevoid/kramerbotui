@@ -23,7 +23,7 @@
     };
 
     let amazonOptions = {
-        dailyDeals: false,
+        topDaily: false,
         weeklyDeals: false,
     };
 
@@ -43,31 +43,38 @@
     function resetUserData() {
         ozbargainOptions.goodDeals = false;
         ozbargainOptions.awesomeDeals = false;
-        amazonOptions.dailyDeals = false;
-        amazonOptions.dailyWeekly = false;
+        amazonOptions.topDaily = false;
+        amazonOptions.topWeekly = false;
         ozbSent = 0;
         amzSent = 0;
     }
 
     async function loadUserData() {
+        let errRsp = "Unknown error";
         try {
             const response = await fetch(`${SERVER_URL}/users/${chatId}`);
+            const data = await response.json();
+            if (data) {
+                errRsp = data["result"];
+            }
             if (!response.ok) {
-                toast.push(`Connection error! status: ${response.status}`);
+                toast.push(`Unable to load user data! Error: ${errRsp}`);
                 resetUserData();
+                loginFalse();
             } else {
-                const data = await response.json();
-                watches = data.Keywords;
-                ozbargainOptions.goodDeals = data.OzbGood;
-                ozbargainOptions.awesomeDeals = data.OzbSuper;
-                amazonOptions.dailyDeals = data.AmzDaily;
-                amazonOptions.dailyWeekly = data.AmzWeekly;
-                ozbSent = data.OzbSent.length; // assuming OzbSent is an array
-                amzSent = data.AmzSent.length; // assuming AmzSent is an array
+                const user = data["result"];
+                watches = user.Keywords;
+                ozbargainOptions.goodDeals = user.OzbGood;
+                ozbargainOptions.awesomeDeals = user.OzbSuper;
+                amazonOptions.topDaily = user.AmzDaily;
+                amazonOptions.topWeekly = user.AmzWeekly;
+                ozbSent = user.OzbSent.length; // assuming OzbSent is an array
+                amzSent = user.AmzSent.length; // assuming AmzSent is an array
             }
         } catch (error) {
-            toast.push(`Connection error! Unable to reach server.`);
+            toast.push(`Unable to load user data. Error: ${errRsp} ${error}`);
             resetUserData();
+            loginFalse();
         }
     }
 
@@ -151,19 +158,13 @@
         <h2 class="text-lg font-bold mb-2">🅰️ Amazon</h2>
         <div>
             <label>
-                <input
-                    type="checkbox"
-                    bind:checked={amazonOptions.dailyDeals}
-                />
+                <input type="checkbox" bind:checked={amazonOptions.topDaily} />
                 Watch top daily deals
             </label>
         </div>
         <div>
             <label>
-                <input
-                    type="checkbox"
-                    bind:checked={amazonOptions.weeklyDeals}
-                />
+                <input type="checkbox" bind:checked={amazonOptions.topWeekly} />
                 Watch top weekly deals
             </label>
         </div>
