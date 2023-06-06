@@ -8,8 +8,7 @@
         updateUser,
     } from "../userStore";
     import { toast } from "@zerodevx/svelte-toast";
-    import bcrypt from "bcryptjs";
-    const saltRounds = 10;
+    import CryptoJS from "crypto-js";
 
     let username = "";
     let password = "";
@@ -17,7 +16,9 @@
     async function login() {
         try {
             // get bcrypt hash of password
-            const passwordHash = await bcrypt.hash(password, saltRounds);
+            const passwordHash = CryptoJS.SHA512(password).toString(
+                CryptoJS.enc.Hex
+            );
 
             // login API call
             const response = await fetch(`${SERVER_URL}/authenticate`, {

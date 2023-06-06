@@ -8,8 +8,7 @@
         userStore,
     } from "../userStore";
     import { SERVER_URL } from "../config.js";
-    import bcrypt from "bcryptjs";
-    const saltRounds = 10;
+    import CryptoJS from "crypto-js";
 
     let username = "";
     let password = "";
@@ -108,7 +107,9 @@
             }
 
             // get hash of password
-            const passwordHash = await bcrypt.hash(password, saltRounds);
+            const passwordHash = CryptoJS.SHA512(password).toString(
+                CryptoJS.enc.Hex
+            );
 
             const response = await fetch(`${SERVER_URL}/signup`, {
                 method: "POST",
