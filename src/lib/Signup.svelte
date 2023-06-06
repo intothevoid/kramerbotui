@@ -8,7 +8,8 @@
         userStore,
     } from "../userStore";
     import { SERVER_URL } from "../config.js";
-    import MD5 from "crypto-js/md5";
+    import bcrypt from "bcryptjs";
+    const saltRounds = 10;
 
     let username = "";
     let password = "";
@@ -106,8 +107,8 @@
                 return;
             }
 
-            // get md5 hash of password
-            const passwordMD5 = MD5(password).toString();
+            // get hash of password
+            const passwordHash = await bcrypt.hash(password, saltRounds);
 
             const response = await fetch(`${SERVER_URL}/signup`, {
                 method: "POST",
@@ -117,7 +118,7 @@
                 body: JSON.stringify({
                     chatId: chatId,
                     username: username,
-                    password: passwordMD5,
+                    password: passwordHash,
                 }),
             });
 

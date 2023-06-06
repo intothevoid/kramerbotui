@@ -8,15 +8,16 @@
         updateUser,
     } from "../userStore";
     import { toast } from "@zerodevx/svelte-toast";
-    import MD5 from "crypto-js/md5";
+    import bcrypt from "bcryptjs";
+    const saltRounds = 10;
 
     let username = "";
     let password = "";
 
     async function login() {
         try {
-            // get md5 hash of password
-            const passwordMD5 = MD5(password).toString();
+            // get bcrypt hash of password
+            const passwordHash = await bcrypt.hash(password, saltRounds);
 
             // login API call
             const response = await fetch(`${SERVER_URL}/authenticate`, {
@@ -26,13 +27,12 @@
                 },
                 body: JSON.stringify({
                     username: username,
-                    password: passwordMD5,
+                    password: passwordHash,
                 }),
             });
 
             const data = await response.json();
             let chatId = null;
-            let errRsp = null;
             if (data) {
                 chatId = data["result"];
             }
