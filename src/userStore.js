@@ -57,7 +57,7 @@ export async function resetUser() {
 export async function updateUser(username, chatId) {
     userStore.update((state) => ({
         ...state,
-        username: username,
+        username: username.toLowerCase(),
         chatId: chatId,
     }));
 } 

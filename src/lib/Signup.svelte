@@ -61,7 +61,9 @@
         // check if username is alphanumeric
         let alphanumeric = /^[a-z0-9]+$/i;
         if (!alphanumeric.test(username)) {
-            toast.push("Username should only contain alphabets and numbers!");
+            toast.push(
+                "Username should only contain lowercase alphabets and numbers!"
+            );
             username = "";
             return false;
         }
@@ -118,7 +120,7 @@
                 },
                 body: JSON.stringify({
                     chatId: chatId,
-                    username: username,
+                    username: username.toLowerCase(),
                     password: passwordHash,
                 }),
             });
