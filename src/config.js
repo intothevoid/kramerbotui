@@ -1,2 +1,2 @@
 // config.js
-export const SERVER_URL = "http://192.168.1.200:3179";
+export const SERVER_URL = "http://bindok.hopto.org:3179";

@@ -50,31 +50,6 @@
             <p>No deals available or unable to retrieve deals.</p>
         {:else}
             <div>
-                <!-- Amazon Deals -->
-                <h3 class="text-md font-semibold mt-4">️️🅰️ Amazon Deals</h3>
-                {#if dealData.AMZ.length === 0}
-                    <p>No Amazon deals available.</p>
-                {:else}
-                    <!-- Amazon deals table... -->
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Title</th>
-                                <th>Time</th>
-                                <th>Link</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {#each dealData.AMZ as deal}
-                                <tr>
-                                    <td>{deal.title}</td>
-                                    <td>{deal.time}</td>
-                                    <td><a href={deal.url}>Link</a></td>
-                                </tr>
-                            {/each}
-                        </tbody>
-                    </table>
-                {/if}
                 <!-- Ozbargain Deals -->
                 <h3 class="text-md font-semibold mt-4">🟠 Ozbargain Deals</h3>
                 {#if dealData.OZB.length === 0}
@@ -100,6 +75,32 @@
                                             ? "🔥 "
                                             : ""}{deal.upvotes}
                                     </td>
+                                    <td><a href={deal.url}>Link</a></td>
+                                </tr>
+                            {/each}
+                        </tbody>
+                    </table>
+                {/if}
+
+                <!-- Amazon Deals -->
+                <h3 class="text-md font-semibold mt-4">️️🅰️ Amazon Deals</h3>
+                {#if dealData.AMZ.length === 0}
+                    <p>No Amazon deals available.</p>
+                {:else}
+                    <!-- Amazon deals table... -->
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Time</th>
+                                <th>Link</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {#each dealData.AMZ as deal}
+                                <tr>
+                                    <td>{deal.title}</td>
+                                    <td>{deal.time}</td>
                                     <td><a href={deal.url}>Link</a></td>
                                 </tr>
                             {/each}
