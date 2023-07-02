@@ -1,2 +1,2 @@
 // config.js
-export const SERVER_URL = "http://bindok.hopto.org:3179";
+export const SERVER_URL = "https://kramerbotbe.karan.myds.me";
